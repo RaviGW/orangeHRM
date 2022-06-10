@@ -1,5 +1,9 @@
 package orangeHRM_Test;
 
+
+
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
@@ -15,11 +19,14 @@ import orangeHRM_POM.logOut;
 public class TC_02_searchUserInUserManagement 
 {
 	WebDriver driver;
+	Logger logger;
 	@BeforeClass
 	public void launchBrowser()
 	{
 		System.setProperty("webdriver.chrome.driver", "B:\\Automation\\chromedriver_win32\\chromedriver.exe");
 		driver = new ChromeDriver();
+		logger = Logger.getLogger("com.orangeHRM");
+		PropertyConfigurator.configure("Log4j.properties");
 	}
 	
 	@BeforeMethod
@@ -27,6 +34,7 @@ public class TC_02_searchUserInUserManagement
 	{
 		driver.get("https://opensource-demo.orangehrmlive.com/");
 		Thread.sleep(2000);
+		logger.info("URL is Opened");
 	}
 	
 	@Test (dependsOnMethods = "loginInToOrangeHRM")
@@ -40,6 +48,8 @@ public class TC_02_searchUserInUserManagement
 		user.enterEmployeeName();
 		user.selectStatus();
 		user.clickOnSearch();
+		logger.info("User found in User Management");
+		
 	}
 	
 	@Test 
@@ -47,6 +57,7 @@ public class TC_02_searchUserInUserManagement
 	{
 		LogInPage login = new LogInPage(driver);
 		login.enterCredentials();
+		logger.info("succesfully logged in to application");
 	}
 	
 	@AfterMethod

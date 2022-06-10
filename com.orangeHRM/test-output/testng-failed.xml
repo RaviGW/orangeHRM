@@ -7,8 +7,8 @@
         <methods>
           <include name="launchApplication"/>
           <include name="toVerifyUserDataInUserManagement"/>
+          <include name="testCaseStatus"/>
           <include name="loginInToOrangeHRM"/>
-          <include name="logoutFromApplication"/>
           <include name="closeApplication"/>
           <include name="launchBrowser"/>
         </methods>
